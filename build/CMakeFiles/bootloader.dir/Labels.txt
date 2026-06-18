@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/workspaces/TANK/build/CMakeFiles/bootloader
+/workspaces/TANK/build/CMakeFiles/bootloader.rule
+/workspaces/TANK/build/CMakeFiles/bootloader-complete.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/workspaces/TANK/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
