@@ -30,10 +30,11 @@ typedef struct {
     bool left;
 } ps4_state_t;
 
-// 既存の初期化関数
-void init_bluetooth_ps4(void);
 // Bluetooth（PS4コントローラー）の初期化
 void init_bluetooth_ps4(void);
+
+// 現在の入力状態をまとめて取得する
+bool get_ps4_state(ps4_state_t *out_state);
 
 // 左スティック値を取得（戻り値：接続中なら true）
 bool get_ps4_joystick_values(int8_t *out_x, int8_t *out_y, int8_t *out_rx, int8_t *out_ry);

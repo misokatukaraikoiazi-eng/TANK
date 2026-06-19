@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "tank_project",
-    "project_version":    "7d17723-dirty",
+    "project_version":    "f843890-dirty",
     "project_path":       "/workspaces/TANK",
     "idf_path":           "/opt/esp/idf",
     "build_dir":          "/workspaces/TANK/build",

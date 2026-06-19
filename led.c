@@ -54,14 +54,36 @@ void led_update(const ps4_state_t *state) {
     if (state == NULL) {
         return;
     }
+    // 1. 先にint32_tにキャストして、-128を受け止められる箱にする
+    int32_t raw_lx = (int32_t)state->lx;
+
+    // 2. デッドゾーン（不感帯15）の処理
+    if (abs(raw_lx) < 15) {
+        raw_lx = 0;
+    }
+
+    // 3. 安全に絶対値を取り、最大値が「128」になっても溢れないように計算
+    // 分母を 127 ではなく 128（左端の最大値）で割ることで、完全に255にクランプさせます
+    uint32_t duty_left = (uint32_t)(abs(raw_lx) * 255 / 128);
+
+    // 4. 万が一、計算誤差で255を超えた場合のガード処理
+    if (duty_left > 255) {
+        duty_left = 255;
+    }
 
     // 左スティックの絶対値をPWMのデューティ比に変換
-    uint32_t duty_left = (uint32_t)(abs(state->lx) * 255 / 127);
     ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, duty_left);
     ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
 
     // 右スティックの絶対値をPWMのデューティ比に変換
-    uint32_t duty_right = (uint32_t)(abs(state->rx) * 255 / 127);
+    int32_t raw_rx = (int32_t)state->rx;
+    if (abs(raw_rx) < 15) {
+        raw_rx = 0;
+    }
+    uint32_t duty_right = (uint32_t)(abs(raw_rx) * 255 / 128);
+    if (duty_right > 255) {
+        duty_right = 255;
+    }
     ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1, duty_right);
     ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);
 
