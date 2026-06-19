@@ -17,6 +17,6 @@ echo "📝 コミットを作成中..."
 git commit -m "$1"
 
 echo "🚀 GitHubへPush中..."
-git push origin main
+git push
 
 echo "✅ すべての処理が完了しました！"

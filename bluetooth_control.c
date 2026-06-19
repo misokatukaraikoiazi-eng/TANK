@@ -22,12 +22,16 @@ static bool    current_up = false;
 static bool    current_right = false;
 static bool    current_down = false;
 static bool    current_left = false;
+static int8_t  current_rx    = 0;
+static int8_t  current_ry    = 0;
 
 
 // ps4.h が定める正しいコールバック型: void (*)(ps4_t, ps4_event_t)
 static void ps4_event_cb(ps4_t data, ps4_event_t event) {
     current_x     = data.analog.stick.lx;
     current_y     = data.analog.stick.ly;
+    current_rx    = data.analog.stick.rx;
+    current_ry    = data.analog.stick.ry;
     current_cross = (bool)data.button.cross;
     current_circle = (bool)data.button.circle;
     current_triangle = (bool)data.button.triangle;
@@ -53,13 +57,16 @@ void init_bluetooth_ps4(void) {
     ps4Init();
 }
 
-bool get_ps4_joystick_values(int8_t *out_x, int8_t *out_y) {
-    if (out_x == NULL || out_y == NULL) return false;
+bool get_ps4_joystick_values(int8_t *out_x, int8_t *out_y, int8_t *out_rx, int8_t *out_ry) {
+    if (out_x == NULL || out_y == NULL || out_rx == NULL || out_ry == NULL) return false;
     *out_x = current_x;
     *out_y = current_y;
+    *out_rx = current_rx;
+    *out_ry = current_ry;   
     is_connected = ps4IsConnected();
     return is_connected;
 }
+
 
 bool get_ps4_button_cross(void) {
     return current_cross;

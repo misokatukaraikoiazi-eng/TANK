@@ -1,6 +1,9 @@
+#include <stdint.h>
+
 // 左スティック(lx, ly)から左右のモーター出力を計算する関数
 // デッドゾーンは15、計算結果は-128〜127にクランプする
 void calculate_motor_output(int8_t lx, int8_t ly) {
+#if 0
     int8_t left_motor = 0;
     int8_t right_motor = 0;
 
@@ -20,4 +23,5 @@ void calculate_motor_output(int8_t lx, int8_t ly) {
     if (right_motor < -128) right_motor = -128;
 
     // モーター出力を使用してモーターを制御するコードをここに追加
+#endif
 }

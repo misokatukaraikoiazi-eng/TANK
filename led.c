@@ -1,0 +1,81 @@
+#include "driver/gpio.h"
+#include "driver/ledc.h"
+#include "esp_log.h"
+#include <stdlib.h>
+#include "led.h"
+
+// GPIO25(左スティックPWM), GPIO26(右スティックPWM)をLEDCで初期化
+// GPIO27(〇ボタン), GPIO14(×ボタン)を通常の出力として初期化する関数
+void led_init(void) {
+    // LEDCのタイマーを設定
+    ledc_timer_config_t ledc_timer = {
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .timer_num = LEDC_TIMER_0,
+        .duty_resolution = LEDC_TIMER_8_BIT,
+        .freq_hz = 5000,
+        .clk_cfg = LEDC_AUTO_CLK
+    };
+    ledc_timer_config(&ledc_timer);
+
+    // GPIO25とGPIO26をLEDCチャネルに割り当て
+    ledc_channel_config_t ledc_channel_left = {
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel = LEDC_CHANNEL_0,
+        .timer_sel = LEDC_TIMER_0,
+        .intr_type = LEDC_INTR_DISABLE,
+        .gpio_num = GPIO_NUM_25,
+        .duty = 0,
+        .hpoint = 0
+    };
+    ledc_channel_config(&ledc_channel_left);
+
+    ledc_channel_config_t ledc_channel_right = {
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel = LEDC_CHANNEL_1,
+        .timer_sel = LEDC_TIMER_0,
+        .intr_type = LEDC_INTR_DISABLE,
+        .gpio_num = GPIO_NUM_26,
+        .duty = 0,
+        .hpoint = 0
+    };
+    ledc_channel_config(&ledc_channel_right);
+
+    // GPIO27とGPIO14を通常の出力として設定
+    gpio_reset_pin(GPIO_NUM_27);
+    gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT);
+    
+    gpio_reset_pin(GPIO_NUM_14);
+    gpio_set_direction(GPIO_NUM_14, GPIO_MODE_OUTPUT);
+}
+// ジョイスティックとボタンの状態を受け取り、各LEDを制御する関数
+// 左右スティック(lx, ly, rx,  ry: -128〜127)の絶対値をPWMのデューティ比(0〜255)に変換して明暗させる
+// circle, crossが真なら対応するLEDを点灯、triangleが真ならcircleのLEDを消灯、squareが真ならcrossのLEDを消灯する
+void led_update(const ps4_state_t *state) {
+    if (state == NULL) {
+        return;
+    }
+
+    // 左スティックの絶対値をPWMのデューティ比に変換
+    uint32_t duty_left = (uint32_t)(abs(state->lx) * 255 / 127);
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, duty_left);
+    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+
+    // 右スティックの絶対値をPWMのデューティ比に変換
+    uint32_t duty_right = (uint32_t)(abs(state->rx) * 255 / 127);
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1, duty_right);
+    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_1);
+
+    // ボタンの状態に応じてLEDを制御
+    if (state->circle) {
+        gpio_set_level(GPIO_NUM_27, 1); // circleが真なら〇ボタンのLEDを点灯
+    }
+    if (state->cross) {
+        gpio_set_level(GPIO_NUM_14, 1); // crossが真なら×ボタンのLEDを点灯
+    }
+    if (state->triangle) {
+        gpio_set_level(GPIO_NUM_27, 0); // triangleが真なら〇ボタンのLEDを消灯
+    }
+    if (state->square) {
+        gpio_set_level(GPIO_NUM_14, 0); // squareが真なら×ボタンのLEDを消灯
+    }
+}

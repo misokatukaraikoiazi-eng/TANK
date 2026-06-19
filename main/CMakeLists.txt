@@ -3,9 +3,11 @@ idf_component_register(
         "../main.c"
         "../motor_control.c"
         "../bluetooth_control.c"
+        "../led.c"
     INCLUDE_DIRS
         ".."
     REQUIRES
+        driver
         nvs_flash
         ps4
 )

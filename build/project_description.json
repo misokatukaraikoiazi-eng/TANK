@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "tank_project",
-    "project_version":    "1",
+    "project_version":    "7d17723-dirty",
     "project_path":       "/workspaces/TANK",
     "idf_path":           "/opt/esp/idf",
     "build_dir":          "/workspaces/TANK/build",
@@ -785,12 +785,12 @@
             "dir": "/workspaces/TANK/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [ "nvs_flash", "ps4" ],
+            "reqs": [ "driver", "nvs_flash", "ps4" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/workspaces/TANK/build/esp-idf/main/libmain.a",
-            "sources": [ "/workspaces/TANK/main.c", "/workspaces/TANK/motor_control.c", "/workspaces/TANK/bluetooth_control.c" ],
+            "sources": [ "/workspaces/TANK/main.c", "/workspaces/TANK/motor_control.c", "/workspaces/TANK/bluetooth_control.c", "/workspaces/TANK/led.c" ],
             "include_dirs": [ ".." ]
         },
         "mbedtls": {
@@ -2073,7 +2073,7 @@
             "prefix": "idf",
             "dir": "/workspaces/TANK/main",
             "lib": "__idf_main",
-            "reqs": [ "nvs_flash", "ps4" ],
+            "reqs": [ "driver", "nvs_flash", "ps4" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
