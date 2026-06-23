@@ -1,10 +1,13 @@
 #include <stddef.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "bluetooth_control.h"
 #include "ps4.h"
-
+#include "ps4_int.h"
 static ps4_state_t current_state = {0};
 static bool is_connected = false;
+static bool has_registered_paired_mac = false;
+static uint8_t registered_paired_mac[6] = {0};
 
 typedef bool (*ps4_button_reader_t)(void);
 
@@ -28,6 +31,43 @@ static bool read_left(void) { return current_state.left; }
 
 static bool read_button_state(ps4_button_reader_t reader) {
     return reader();
+}
+
+static void ps4_disconnect(void) {
+    ps4_l2cap_deinit_services();
+}
+
+static void ps4_set_event_callback(ps4_event_callback_t cb) {
+    ps4SetEventCallback(cb);
+}
+
+static void ps4_init(void) {
+    ps4Init();
+}
+
+static bool parse_mac_address(const char *mac_str, uint8_t out_mac[6]) {
+    unsigned int b0 = 0;
+    unsigned int b1 = 0;
+    unsigned int b2 = 0;
+    unsigned int b3 = 0;
+    unsigned int b4 = 0;
+    unsigned int b5 = 0;
+
+    if (mac_str == NULL || out_mac == NULL) {
+        return false;
+    }
+
+    if (sscanf(mac_str, "%2x:%2x:%2x:%2x:%2x:%2x", &b0, &b1, &b2, &b3, &b4, &b5) != 6) {
+        return false;
+    }
+
+    out_mac[0] = (uint8_t)b0;
+    out_mac[1] = (uint8_t)b1;
+    out_mac[2] = (uint8_t)b2;
+    out_mac[3] = (uint8_t)b3;
+    out_mac[4] = (uint8_t)b4;
+    out_mac[5] = (uint8_t)b5;
+    return true;
 }
 
 
@@ -59,9 +99,51 @@ static void ps4_event_cb(ps4_t data, ps4_event_t event) {
 
 }
 
+static void init_ps4_with_mac(const uint8_t *host_mac) {
+    ps4_disconnect();
+    ps4_set_event_callback(ps4_event_cb);
+
+    if (host_mac != NULL) {
+        ps4SetBluetoothMacAddress(host_mac);
+    }
+
+    ps4_init();
+}
+
 void init_bluetooth_ps4(void) {
-    ps4SetEventCallback(ps4_event_cb);
-    ps4Init();
+    const uint8_t *mac_to_use = has_registered_paired_mac ? registered_paired_mac : NULL;
+    init_ps4_with_mac(mac_to_use);
+}
+
+bool register_paired_ps4_mac(const char *host_mac) {
+    uint8_t mac[6] = {0};
+
+    if (!parse_mac_address(host_mac, mac)) {
+        return false;
+    }
+
+    registered_paired_mac[0] = mac[0];
+    registered_paired_mac[1] = mac[1];
+    registered_paired_mac[2] = mac[2];
+    registered_paired_mac[3] = mac[3];
+    registered_paired_mac[4] = mac[4];
+    registered_paired_mac[5] = mac[5];
+    has_registered_paired_mac = true;
+    return true;
+}
+
+bool is_paired_ps4_mac_registered(void) {
+    return has_registered_paired_mac;
+}
+
+
+bool init_bluetooth_ps4_with_host_mac(const char *host_mac) {
+    if (!register_paired_ps4_mac(host_mac)) {
+        return false;
+    }
+
+    init_bluetooth_ps4();
+    return true;
 }
 
 bool get_ps4_state(ps4_state_t *out_state) {

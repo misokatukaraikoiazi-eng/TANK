@@ -352,6 +352,12 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
+# Tank Project
+#
+CONFIG_PAIRING_DEVICE_MAC="8C:94:DF:B9:8E:CE"
+# end of Tank Project
+
+#
 # Compiler options
 #
 CONFIG_COMPILER_OPTIMIZATION_DEFAULT=y

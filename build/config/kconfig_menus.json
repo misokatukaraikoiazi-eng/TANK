@@ -4571,6 +4571,24 @@
     {
         "children": [
             {
+                "children": [],
+                "depends_on": null,
+                "help": "Set the ESP32 Bluetooth host MAC used for PS4 pairing in format\nAA:BB:CC:DD:EE:FF. Leave empty to use runtime discovery.",
+                "id": "PAIRING_DEVICE_MAC",
+                "name": "PAIRING_DEVICE_MAC",
+                "range": null,
+                "title": "Paired PS4 host MAC address",
+                "type": "string"
+            }
+        ],
+        "depends_on": null,
+        "id": "tank-project",
+        "title": "Tank Project",
+        "type": "menu"
+    },
+    {
+        "children": [
+            {
                 "children": [
                     {
                         "children": [],

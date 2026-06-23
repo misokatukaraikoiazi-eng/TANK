@@ -1,0 +1,46 @@
+[0/1] Re-running CMake...
+-- ccache will be used for faster recompilation
+-- Building ESP-IDF components for target esp32
+NOTICE: Processing 1 dependencies:
+NOTICE: [1/1] idf (5.1.7)
+-- Project sdkconfig file /workspaces/TANK/sdkconfig
+-- Could NOT find Threads (missing: Threads_FOUND) 
+-- USING O3
+-- App "tank_project" version: 2a534e2-dirty
+-- Adding linker script /workspaces/TANK/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /opt/esp/idf/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script /opt/esp/idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table perfmon protobuf-c protocomm ps4 pthread sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /opt/esp/idf/components/app_trace /opt/esp/idf/components/app_update /opt/esp/idf/components/bootloader /opt/esp/idf/components/bootloader_support /opt/esp/idf/components/bt /opt/esp/idf/components/cmock /opt/esp/idf/components/console /opt/esp/idf/components/cxx /opt/esp/idf/components/driver /opt/esp/idf/components/efuse /opt/esp/idf/components/esp-tls /opt/esp/idf/components/esp_adc /opt/esp/idf/components/esp_app_format /opt/esp/idf/components/esp_coex /opt/esp/idf/components/esp_common /opt/esp/idf/components/esp_eth /opt/esp/idf/components/esp_event /opt/esp/idf/components/esp_gdbstub /opt/esp/idf/components/esp_hid /opt/esp/idf/components/esp_http_client /opt/esp/idf/components/esp_http_server /opt/esp/idf/components/esp_https_ota /opt/esp/idf/components/esp_https_server /opt/esp/idf/components/esp_hw_support /opt/esp/idf/components/esp_lcd /opt/esp/idf/components/esp_local_ctrl /opt/esp/idf/components/esp_mm /opt/esp/idf/components/esp_netif /opt/esp/idf/components/esp_netif_stack /opt/esp/idf/components/esp_partition /opt/esp/idf/components/esp_phy /opt/esp/idf/components/esp_pm /opt/esp/idf/components/esp_psram /opt/esp/idf/components/esp_ringbuf /opt/esp/idf/components/esp_rom /opt/esp/idf/components/esp_system /opt/esp/idf/components/esp_timer /opt/esp/idf/components/esp_wifi /opt/esp/idf/components/espcoredump /opt/esp/idf/components/esptool_py /opt/esp/idf/components/fatfs /opt/esp/idf/components/freertos /opt/esp/idf/components/hal /opt/esp/idf/components/heap /opt/esp/idf/components/http_parser /opt/esp/idf/components/idf_test /opt/esp/idf/components/ieee802154 /opt/esp/idf/components/json /opt/esp/idf/components/log /opt/esp/idf/components/lwip /workspaces/TANK/main /opt/esp/idf/components/mbedtls /opt/esp/idf/components/mqtt /opt/esp/idf/components/newlib /opt/esp/idf/components/nvs_flash /opt/esp/idf/components/openthread /opt/esp/idf/components/partition_table /opt/esp/idf/components/perfmon /opt/esp/idf/components/protobuf-c /opt/esp/idf/components/protocomm /workspaces/TANK/components/ps4 /opt/esp/idf/components/pthread /opt/esp/idf/components/sdmmc /opt/esp/idf/components/soc /opt/esp/idf/components/spi_flash /opt/esp/idf/components/spiffs /opt/esp/idf/components/tcp_transport /opt/esp/idf/components/ulp /opt/esp/idf/components/unity /opt/esp/idf/components/usb /opt/esp/idf/components/vfs /opt/esp/idf/components/wear_levelling /opt/esp/idf/components/wifi_provisioning /opt/esp/idf/components/wpa_supplicant /opt/esp/idf/components/xtensa
+-- Configuring done (24.3s)
+-- Generating done (0.6s)
+-- Build files have been written to: /workspaces/TANK/build
+[1/10] Performing build step for 'bootloader'
+[1/1] cd /workspaces/TANK/build/bootloader/esp-idf/esptool_py && /opt/esp/python_env/idf5.1_py3.8_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /workspaces/TANK/build/bootloader/bootloader.bin
+Bootloader binary size 0x68c0 bytes. 0x740 bytes (6%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/pairing_mac_provider.c.obj
+[5/10] Linking C static library esp-idf/main/libmain.a
+[6/10] Generating ld/sections.ld
+/workspaces/TANK/components/ps4/Kconfig:1: warning: style: quotes recommended around 'PS4' in 'menu PS4'
+[7/10] Linking CXX executable tank_project.elf
+[8/10] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32 image...
+Merged 27 ELF sections
+Successfully created esp32 image.
+Generated /workspaces/TANK/build/tank_project.bin
+[9/10] cd /workspaces/TANK/build/esp-idf/esptool_py && /opt/esp/python_env/idf5.1_py3.8_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /workspaces/TANK/build/partition_table/partition-table.bin /workspaces/TANK/build/tank_project.bin
+tank_project.bin binary size 0xdeb90 bytes. Smallest app partition is 0x100000 bytes. 0x21470 bytes (13%) free.
+[10/10] Running utility command for app
+esptool.py --chip esp32 merge_bin -o /workspaces/TANK/target_production.bin --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 tank_project.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.10.0
+SHA digest in image updated
+Wrote 0xeeb90 bytes to file /workspaces/TANK/target_production.bin, ready to flash to offset 0x0

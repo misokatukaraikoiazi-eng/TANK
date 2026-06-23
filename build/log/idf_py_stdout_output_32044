@@ -1,0 +1,25 @@
+[1/12] Performing build step for 'bootloader'
+[1/1] cd /workspaces/TANK/build/bootloader/esp-idf/esptool_py && /opt/esp/python_env/idf5.1_py3.8_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /workspaces/TANK/build/bootloader/bootloader.bin
+Bootloader binary size 0x68c0 bytes. 0x740 bytes (6%) free.
+[2/12] No install step for 'bootloader'
+[3/12] Completed 'bootloader'
+[4/12] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/led.c.obj
+[5/12] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/bluetooth_control.c.obj
+[6/12] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/main.c.obj
+[7/12] Linking C static library esp-idf/main/libmain.a
+[8/12] Generating ld/sections.ld
+/workspaces/TANK/components/ps4/Kconfig:1: warning: style: quotes recommended around 'PS4' in 'menu PS4'
+[9/12] Linking CXX executable tank_project.elf
+[10/12] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32 image...
+Merged 27 ELF sections
+Successfully created esp32 image.
+Generated /workspaces/TANK/build/tank_project.bin
+[11/12] cd /workspaces/TANK/build/esp-idf/esptool_py && /opt/esp/python_env/idf5.1_py3.8_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /workspaces/TANK/build/partition_table/partition-table.bin /workspaces/TANK/build/tank_project.bin
+tank_project.bin binary size 0xde780 bytes. Smallest app partition is 0x100000 bytes. 0x21880 bytes (13%) free.
+[12/12] Running utility command for app
+esptool.py --chip esp32 merge_bin -o /workspaces/TANK/target_production.bin --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 tank_project.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.10.0
+SHA digest in image updated
+Wrote 0xee780 bytes to file /workspaces/TANK/target_production.bin, ready to flash to offset 0x0

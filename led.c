@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "led.h"
 
+#define STATUS_LED_PIN GPIO_NUM_2
+
 // GPIO25(左スティックPWM), GPIO26(右スティックPWM)をLEDCで初期化
 // GPIO27(〇ボタン), GPIO14(×ボタン)を通常の出力として初期化する関数
 void led_init(void) {
@@ -46,6 +48,10 @@ void led_init(void) {
     
     gpio_reset_pin(GPIO_NUM_14);
     gpio_set_direction(GPIO_NUM_14, GPIO_MODE_OUTPUT);
+
+    // 状態表示LED（GPIO2）を通常の出力として設定
+    gpio_reset_pin(STATUS_LED_PIN);
+    gpio_set_direction(STATUS_LED_PIN, GPIO_MODE_OUTPUT);
 }
 // ジョイスティックとボタンの状態を受け取り、各LEDを制御する関数
 // 左右スティック(lx, ly, rx,  ry: -128〜127)の絶対値をPWMのデューティ比(0〜255)に変換して明暗させる
@@ -99,5 +105,31 @@ void led_update(const ps4_state_t *state) {
     }
     if (state->square) {
         gpio_set_level(GPIO_NUM_14, 0); // squareが真なら×ボタンのLEDを消灯
+    }
+}
+// 20ms周期で呼ばれることを想定し、内部カウンターで点滅周期（例：200ms）を作ります
+void led_status_monitor(bool connected) {
+    static int counter = 0;
+    static bool prev_connected = false;
+    static bool blink_on = false;
+
+    if (connected != prev_connected) {
+        counter = 0;
+        if (!connected) {
+            blink_on = false;
+            gpio_set_level(STATUS_LED_PIN, 0);
+        }
+        prev_connected = connected;
+    }
+
+    if (connected) {
+        gpio_set_level(STATUS_LED_PIN, 1); // 接続されている場合は常に点灯
+    } else {
+        counter++;
+        if (counter >= 10) { // 200msごとに点滅（20ms * 10 = 200ms）
+            blink_on = !blink_on;
+            gpio_set_level(STATUS_LED_PIN, blink_on ? 1 : 0);
+            counter = 0; // カウンターをリセット
+        }
     }
 }

@@ -997,6 +997,7 @@
     "OPENTHREAD_DEBUG": false,
     "OPENTHREAD_ENABLED": false,
     "OPENTHREAD_SPINEL_ONLY": false,
+    "PAIRING_DEVICE_MAC": "8C:94:DF:B9:8E:CE",
     "PARTITION_TABLE_CUSTOM": false,
     "PARTITION_TABLE_CUSTOM_FILENAME": "partitions.csv",
     "PARTITION_TABLE_FILENAME": "partitions_singleapp.csv",

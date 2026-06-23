@@ -1,6 +1,7 @@
 idf_component_register(
     SRCS
         "../main.c"
+        "../pairing_mac_provider.c"
         "../motor_control.c"
         "../bluetooth_control.c"
         "../led.c"

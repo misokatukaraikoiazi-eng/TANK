@@ -1,0 +1,10 @@
+menu "Tank Project"
+
+config PAIRING_DEVICE_MAC
+    string "Paired PS4 host MAC address"
+    default ""
+    help
+        Set the ESP32 Bluetooth host MAC used for PS4 pairing in format
+        AA:BB:CC:DD:EE:FF. Leave empty to use runtime discovery.
+
+endmenu

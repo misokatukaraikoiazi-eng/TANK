@@ -33,6 +33,17 @@ typedef struct {
 // Bluetooth（PS4コントローラー）の初期化
 void init_bluetooth_ps4(void);
 
+// ペアリングで取得したMACを登録する
+// host_mac は "AA:BB:CC:DD:EE:FF" 形式
+bool register_paired_ps4_mac(const char *host_mac);
+
+// ペアリングMACが登録済みか確認する
+bool is_paired_ps4_mac_registered(void);
+
+// Bluetooth（PS4コントローラー）の初期化（ホストMAC指定）
+// host_mac は "AA:BB:CC:DD:EE:FF" 形式
+bool init_bluetooth_ps4_with_host_mac(const char *host_mac);
+
 // 現在の入力状態をまとめて取得する
 bool get_ps4_state(ps4_state_t *out_state);
 
