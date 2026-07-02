@@ -1,10 +1,11 @@
 idf_component_register(
     SRCS
-        "main.c"
+        "app_main.c"
     INCLUDE_DIRS
         "."
     REQUIRES
         controller_driver
         led_driver
+        motor_driver
         nvs_flash
 )

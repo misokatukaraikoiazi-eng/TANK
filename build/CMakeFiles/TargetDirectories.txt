@@ -642,6 +642,13 @@
 /workspaces/TANK/build/esp-idf/led_driver/CMakeFiles/install.dir
 /workspaces/TANK/build/esp-idf/led_driver/CMakeFiles/install/local.dir
 /workspaces/TANK/build/esp-idf/led_driver/CMakeFiles/install/strip.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/__idf_motor_driver.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/edit_cache.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/rebuild_cache.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/list_install_components.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/install.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/install/local.dir
+/workspaces/TANK/build/esp-idf/motor_driver/CMakeFiles/install/strip.dir
 /workspaces/TANK/build/esp-idf/main/CMakeFiles/__idf_main.dir
 /workspaces/TANK/build/esp-idf/main/CMakeFiles/edit_cache.dir
 /workspaces/TANK/build/esp-idf/main/CMakeFiles/rebuild_cache.dir

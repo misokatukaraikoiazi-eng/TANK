@@ -1,0 +1,3 @@
+/workspaces/TANK/components/ps4/Kconfig:1: warning: style: quotes recommended around 'PS4' in 'menu PS4'
+Compiler supported targets: xtensa-esp32-elf
+
