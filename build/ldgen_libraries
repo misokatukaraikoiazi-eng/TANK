@@ -61,4 +61,6 @@
 /workspaces/TANK/build/esp-idf/spiffs/libspiffs.a
 /workspaces/TANK/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 /workspaces/TANK/build/esp-idf/ps4/libps4.a
+/workspaces/TANK/build/esp-idf/controller_driver/libcontroller_driver.a
+/workspaces/TANK/build/esp-idf/led_driver/libled_driver.a
 /workspaces/TANK/build/esp-idf/main/libmain.a

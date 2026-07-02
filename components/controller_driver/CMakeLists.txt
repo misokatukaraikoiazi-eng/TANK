@@ -1,0 +1,10 @@
+idf_component_register(
+    SRCS
+        "bluetooth_control.c"
+        "pairing_mac_provider.c"
+    INCLUDE_DIRS
+        "."
+    REQUIRES
+        nvs_flash
+        ps4
+)

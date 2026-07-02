@@ -1,5 +1,0 @@
-CMake Error at CMakeLists.txt:7:
-  Parse error.  Function missing ending ")".  End of file reached.
-
-
-ninja: error: rebuilding 'build.ninja': subcommand failed

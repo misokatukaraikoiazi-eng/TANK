@@ -1,14 +1,10 @@
 idf_component_register(
     SRCS
-        "../main.c"
-        "../pairing_mac_provider.c"
-        "../motor_control.c"
-        "../bluetooth_control.c"
-        "../led.c"
+        "main.c"
     INCLUDE_DIRS
-        ".."
+        "."
     REQUIRES
-        driver
+        controller_driver
+        led_driver
         nvs_flash
-        ps4
 )
